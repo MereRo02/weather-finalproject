@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="styles.css" /><title>Roudeen Vanilla Weather App</title>
+       </head>
+  <body>
+       <main>
+     <div class="weather-app">
+      
+        <header>
+          <form id="search-form">
+            <input
+              type="search"
+              placeholder="Enter a city.."
+              required
+              id="search-form-input"
+              class="search-form-input"/>
+            <input
+              type="submit"
+              value="Search"
+              class="search-form-button"
+            />
+          </form>
+        </header>
+
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city" id="city">Johannesburg</h1>
+            <p class="weather-app-details">
+              <span id="time">Tuesday 18:49</span>,
+              <span id="description">clear skies</span><br />
+              Humidity: <strong id="humidity">66%</strong>,
+              Wind: <strong id="wind-speed">3.13km/h</strong>
+            </p>
+          </div>
+
+          <div class="weather-app-temperature-container">
+            <div id="icon">🌤️</div>
+            <div class="weather-app-temperature" id="temperature">8</div>
+            <div class="weather-app-unit">°C</div>
+          </div>
+        </div>
+
+        <footer>
+          This project was coded by
+          <a href="https://github.com/MereRo02" target="_blank">Roudeen M Reyneke</a>,
+          is
+          <a href="https://github.com/MereRo02/VanillaWSw7.1" target="_blank">open-sourced on GitHub</a>
+          and
+          <a href="https://vanillawsw7.netlify.app/" target="_blank">hosted on Netlify</a>
+        </footer>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
