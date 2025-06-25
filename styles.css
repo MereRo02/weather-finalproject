@@ -45,15 +45,11 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 243, 254, 0.5);
+  background: rgba(255, 243, 254, 0.3);
   border-radius: 16px;
   z-index: 0;
 }
 
-.weather-app * {
-  position: relative;
-  z-index: 1;
-}
 .forecast {
   display: flex;
   justify-content: space-around;
