@@ -52,6 +52,32 @@ function searchCity(city) {
   axios.get(forecastUrl).then(displayForecast);
 }
 
+function displayForecast(response) {
+  let forecastHTML = "<div class='forecast'>";
+  let days = response.data.daily;
+
+  days.slice(1, 6).forEach(function (day) {
+    let date = new Date(day.time * 1000);
+    let options = { weekday: "short" };
+    let dayName = date.toLocaleDateString("en-US", options);
+
+    forecastHTML += `
+      <div class="forecast-day">
+        <div class="forecast-day-name">${dayName}</div>
+        <img src="${day.condition.icon_url}" class="forecast-icon" alt="${day.condition.description}" />
+        <div class="forecast-temperatures">
+          <span class="forecast-temp-max">${Math.round(day.temperature.maximum)}°</span> /
+          <span class="forecast-temp-min">${Math.round(day.temperature.minimum)}°</span>
+        </div>
+      </div>
+    `;
+  });
+
+  forecastHTML += "</div>";
+  document.querySelector("#forecast").innerHTML = forecastHTML;
+}
+
+
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
@@ -61,4 +87,4 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Paris");
+searchCity("");
