@@ -1,3 +1,4 @@
+console.log("JavaScript loaded");
 function formatDate(date) {
   let days = [
     "Sunday",
@@ -39,6 +40,7 @@ function refreshWeather(response) {
   timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
 iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" alt="weather icon" />`;
@@ -47,9 +49,15 @@ iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="w
 function searchCity(city) {
   let apiKey = "af100of073be0141d3a3t336d3db1ff1";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(refreshWeather);
-   let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(forecastUrl).then(displayForecast);
+  let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  
+  axios.get(apiUrl)
+  .then(refreshWeather)
+  .catch((error) => console.error("Error fetching weather data:", error.response.data));
+  
+  axios.get(forecastUrl)
+  .then(displayForecast)
+  .catch((error) => console.error("Forecast Error:", error.response.data));;
 }
 
 function displayForecast(response) {
@@ -87,4 +95,4 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("");
+searchCity("Cape Town");
