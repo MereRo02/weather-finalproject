@@ -1,4 +1,4 @@
-console.log("JavaScript loaded");
+
 function formatDate(date) {
   let days = [
     "Sunday",
@@ -51,6 +51,7 @@ function searchCity(city) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
   
+   document.querySelector("#forecast").innerHTML = "<p>Loading forecast...</p>";
   axios.get(apiUrl)
   .then(refreshWeather)
   .catch((error) => console.error("Error fetching weather data:", error.response.data));
@@ -90,9 +91,11 @@ function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
   searchCity(searchInput.value);
+  searchInput.value = "";
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
-
-searchCity("Cape Town");
+document.addEventListener("DOMContentLoaded", function () {
+  searchCity("Cape Town");
+})
